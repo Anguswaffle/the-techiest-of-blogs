@@ -1,1 +1,6 @@
 <p>You made it to the post!</p>
+{{> post-details}}
+{{#each comments as |comment|}}
+<h4>{{comment.content}}</h4>
+<p>{{comment.user.name}}</p>
+{{/each}}

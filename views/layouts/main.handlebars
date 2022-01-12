@@ -12,10 +12,12 @@
 
 <body>
   <nav class="bg-info">
+    {{!-- If logged in, dashboard and logout buttons appear in nav --}}
     {{#if logged_in}}
-    <a href="/profile" class="text-white">Profile</a> |
+    <a href="/dashboard" class="text-white">Profile</a> |
     <button class="no-button" id="logout" class="text-white">Logout</button>
     <script src="./js/logout.js"></script>
+    {{!-- If not logged in, login button appears in nav --}}
     {{else}}
     <a href="/login" class="text-white">Login</a>
     {{/if}}
