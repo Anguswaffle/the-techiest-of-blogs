@@ -35,11 +35,15 @@ router.get('/post/:id', async (req, res) => {
         {
           model: Comment,
           attributes: ['content'],
+          include: {
+            model: User,
+            attributes: ['name'],
+          },
         },
       ]
     });
 
-    const post = postData.get({plain: true});
+    const post = postData.get({ plain: true });
 
     res.render('post', {
       ...post,
@@ -53,11 +57,11 @@ router.get('/post/:id', async (req, res) => {
 router.get('/profile', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password']},
+      attributes: { exclude: ['password'] },
       include: [{ model: Post }]
     })
 
-    const user = userData.get({plain: true});
+    const user = userData.get({ plain: true });
 
     res.render('profile', {
       ...user,
