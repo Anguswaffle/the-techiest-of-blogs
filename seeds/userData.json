@@ -2,21 +2,21 @@
   {
     "name": "Sam",
     "email": "sam@sam.com",
-    "password": "samisgreat12345"
+    "password": "samisgreat"
   },
   {
     "name": "Kendall",
     "email": "kendall@kendall.com",
-    "password": "kendallisgreat12345"
+    "password": "kendallisgreat"
   },
   {
     "name": "John",
     "email": "john@john.com",
-    "password": "johnisgreat12345"
+    "password": "johnisgreat"
   },
   {
     "name": "Aidan",
     "email": "aidan@aidan.com",
-    "password": "aidanisgreat12345"
+    "password": "aidanisgreat"
   }
 ]

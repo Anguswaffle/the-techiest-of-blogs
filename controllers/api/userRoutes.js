@@ -16,4 +16,15 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.post('/login', async (req, res) => {
+  try {
+    const userData = await User.findOne()
+
+    const user = userData.get({plain: true});
+    console.log(user)
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
+
 module.exports = router;

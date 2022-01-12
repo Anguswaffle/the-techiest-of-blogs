@@ -74,6 +74,9 @@ router.get('/profile', withAuth, async (req, res) => {
 
 router.get('/login', async (req, res) => {
   // If user is logged in then redirects to profile page
+  try{
+
+
   if (req.session.logged_in) {
     res.redirect('/profile');
     return;
@@ -81,6 +84,9 @@ router.get('/login', async (req, res) => {
 
   //Otherwise login page is rendered
   res.render('login');
+} catch (err) {
+  res.status(400).json(err)
+}
 })
 
 module.exports = router;
