@@ -1,6 +1,26 @@
 <p>You made it to the post!</p>
 {{> post-details}}
+
 {{#each comments as |comment|}}
 <h4>{{comment.content}}</h4>
 <p>{{comment.user.name}}</p>
+<p>{{format_date comment.date_created}}</p>
 {{/each}}
+
+
+<form class="form comment-form">
+  {{#if logged_in}}
+  <div class="form-group">
+    <label for="comment-post">Leave a comment</label>
+    <input class="form-input" type="text" id="comment-post">
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+
+
+
+  {{/if}}
+</form>
+
+<script src="/js/comment.js"></script>

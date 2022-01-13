@@ -16,7 +16,6 @@
     {{#if logged_in}}
     <a href="/dashboard" class="text-white">Profile</a> |
     <button class="no-button" id="logout" class="text-white">Logout</button>
-    <script src="./js/logout.js"></script>
     {{!-- If not logged in, login button appears in nav --}}
     {{else}}
     <a href="/login" class="text-white">Login</a>
@@ -25,6 +24,11 @@
     <a href="/" class="text-white">Home</a>
   </nav>
   {{{body}}}
+
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+
 </body>
 
 </html>
