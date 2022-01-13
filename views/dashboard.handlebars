@@ -1,1 +1,14 @@
-<p>You made it here!</p>
+<h1>Welcome, {{name}}</h1>
+
+<button class="btn btn-primary" type="button" id="new-post">New Post</button>
+
+
+
+<h2>Post history:</h2>
+
+{{#each posts as |post|}}
+<h4>{{post.title}}</h4>
+<p>{{post.content}}</p>
+{{/each}}
+
+<script src="./js/dashboard.js"></script>
