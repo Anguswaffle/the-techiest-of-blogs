@@ -2,9 +2,7 @@
 {{> post-details}}
 
 {{#each comments as |comment|}}
-<h4>{{comment.content}}</h4>
-<p>{{comment.user.name}}</p>
-<p>{{format_date comment.date_created}}</p>
+{{> comment-details}}
 {{/each}}
 
 
