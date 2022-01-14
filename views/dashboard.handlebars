@@ -2,13 +2,14 @@
 
 <button class="btn btn-primary" type="button" id="new-post">New Post</button>
 
-
-
 <h2>Post history:</h2>
 
 {{#each posts as |post|}}
-<h4>{{post.title}}</h4>
-<p>{{post.content}}</p>
+<section class='row'>
+<a href='/post/{{post.id}}' class='col-4 dashboard-post'>{{post.title}}</a>
+<button class='btn btn-light col-2' id={{post.id}}>Edit Post</button>
+<button onclick="return confirm('Are you sure you want to delete this post?');" class='btn btn-danger col-2' id={{post.id}}>Delete Post</button>
+</section>
 {{/each}}
 
 <script src="./js/dashboard.js"></script>
