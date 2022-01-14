@@ -12,9 +12,12 @@ const PORT = process.env.PORT || 3001;
 
 const hbs = exphbs.create({ helpers });
 
+const oneDay = 1000 * 60 * 60 * 24;
 const sess = {
   secret: 'sUpEr SeCrEt SeSsIoN',
-  cookie: {},
+  cookie: {
+    maxAge: oneDay,
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
