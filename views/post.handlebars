@@ -1,13 +1,24 @@
-<p>You made it to the post!</p>
 {{> post-details}}
 
 {{#each comments as |comment|}}
 {{> comment-details}}
+{{!-- {{#compare_id current_id comments.user_id}}
+
+{{/compare_id}} --}}
+{{!-- {{#if logged_in}} --}}
+<div class='row'>
+    <div class='col md-3 mb-5'>
+        <button class="btn btn-sm btn-danger delete-comment" id={{comment.id}}>Delete</button>
+    </div>
+    {{!-- <div class='col md-3 mb-5'>
+        <button class="btn btn-sm btn-secondary edit-comment" id={{comment.id}}>Edit</button>
+    </div> --}}
+</div>
+{{!-- {{/if}} --}}
 {{/each}}
 
-
+{{#if logged_in}}
 <form class="form comment-form">
-  {{#if logged_in}}
   <div class="form-group">
     <label for="comment-post">Leave a comment</label>
     <input class="form-input" type="text" id="comment-post">
@@ -16,10 +27,9 @@
     <button class="btn btn-primary" type="submit">Submit</button>
   </div>
 
-
-
-  {{/if}}
 </form>
+{{/if}}
+
 {{#if logged_in}}
 <script src="/js/comment.js"></script>
 {{/if}}

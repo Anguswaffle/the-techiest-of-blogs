@@ -12,6 +12,20 @@ const PORT = process.env.PORT || 3001;
 
 const hbs = exphbs.create({ helpers });
 
+// hbs.handlebars.registerHelper('compare_id', function (x, y) {
+//   if (x === y) {
+//     return `<div class='row'>
+//     <div class='col md-3 mb-5'>
+//         <button class="btn btn-sm btn-danger delete-comment" id='{{comment.id}}'>Delete</button>
+//     </div>
+//     <div class='col md-3 mb-5'>
+//         <button class="btn btn-sm btn-secondary edit-comment">Edit</button>
+//     </div>
+// </div>`
+//   }
+//   else return;
+// })
+
 const oneDay = 1000 * 60 * 60 * 24;
 const sess = {
   secret: 'sUpEr SeCrEt SeSsIoN',

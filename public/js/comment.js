@@ -19,6 +19,40 @@ const commentFormHandler = async (event) => {
   }
 }
 
+const deleteCommentButton = async (event) => {
+  event.preventDefault();
+
+  const result = confirm('Are you sure you want to delete this comment?');
+
+  if(result) {
+    const comment_id = event.target.id;
+
+    const response = await fetch(`/api/comments/${comment_id}`, {
+      method: 'DELETE',
+    });
+    if(response.ok) {
+      document.location.reload();
+    } else {
+      alert(response.statusText);
+    }
+  }
+}
+
+// const editCommentButton = async (event) => {
+//   event.preventDefault();
+
+//   const comment_id = event.target.id;
+
+//   document.location.assign(`editcomment/${comment_id}`)
+// }
+
 document
   .querySelector('.comment-form')
   .addEventListener('submit', commentFormHandler);
+
+document
+  .querySelectorAll('.delete-comment')
+  .forEach(button => {
+    button.addEventListener('click', deleteCommentButton)
+  });
+

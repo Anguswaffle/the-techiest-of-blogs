@@ -3,14 +3,18 @@
 <button class="btn btn-primary" type="button" id="new-post">New Post</button>
 
 <h2>Post history:</h2>
-
+{{#if posts.length}}
 {{#each posts as |post|}}
 <section class='row'>
 <a href='/post/{{post.id}}' class='col-4 dashboard-post'>{{post.title}}</a>
 <button class='btn btn-light col-2' id={{post.id}}>Edit Post</button>
 
-<button onclick="return confirm('Are you sure you want to delete this post?');" class='btn btn-danger col-2' id={{post.id}}>Delete Post</button>
+<button  class='btn btn-danger col-2' id={{post.id}}>Delete Post</button>
 </section>
 {{/each}}
+{{else}}
+<h3>You have no posts!</h3>
+
+{{/if}}
 
 <script src="/js/dashboard.js"></script>

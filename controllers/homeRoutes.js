@@ -35,14 +35,15 @@ router.get('/post/:id', async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ['content', 'date_created'],
+          attributes: ['id', 'content', 'date_created','user_id'],
           include: {
             model: User,
-            attributes: ['name'],
+            attributes: ['id','name'],
           },
         },
       ]
     });
+    
 
     if(!postData) {
       res.status(404).json({message: 'No post found with this id!'});
@@ -50,10 +51,11 @@ router.get('/post/:id', async (req, res) => {
     }
 
     const post = postData.get({ plain: true });
-
+    console.log(post);
     res.render('post', {
       ...post,
-      logged_in: req.session.logged_in
+      // current_id: req.session.user_id,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -73,7 +75,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
     res.render('dashboard', {
       ...user,
-      logged_in: true
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -83,7 +85,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 router.get('/newpost', withAuth, async (req, res) => {
   try {
     res.render('newpost', {
-      logged_in: true
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err)
@@ -110,7 +112,7 @@ router.get('/editpost/:id', withAuth, async (req, res) => {
 
     res.render('editpost', {
       ...post,
-      logged_in: true
+      logged_in: req.session.logged_in,
     });
 
   } catch (err) {
