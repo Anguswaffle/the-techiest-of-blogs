@@ -44,6 +44,11 @@ router.get('/post/:id', async (req, res) => {
       ]
     });
 
+    if(!postData) {
+      res.status(404).json({message: 'No post found with this id!'});
+      return;
+    }
+
     const post = postData.get({ plain: true });
 
     res.render('post', {
@@ -59,9 +64,9 @@ router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: { 
+      include: {
         model: Post,
-        attributes: ['id', 'title', 'content'] 
+        attributes: ['id', 'title']
       }
     })
 
@@ -84,6 +89,34 @@ router.get('/newpost', withAuth, async (req, res) => {
     res.status(500).json(err)
   }
 })
+
+router.get('/editpost/:id', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        }
+      ]
+    });
+
+    if(!postData) {
+      res.status(404).json({message: 'No post found with this id!'});
+      return;
+    }
+
+    const post = postData.get({plain: true});
+
+    res.render('editpost', {
+      ...post,
+      logged_in: true
+    });
+
+  } catch (err) {
+    res.status(400).json(err)
+  }
+});
 
 router.get('/login', async (req, res) => {
   // If user is logged in then redirects to dashboard page

@@ -11,7 +11,6 @@ const commentFormHandler = async (event) => {
       headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
-      // document.querySelector('.comment-form').reset();
       document.querySelector('.comment-form').reset();
       document.location.reload();
     } else {

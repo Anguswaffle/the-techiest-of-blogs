@@ -5,7 +5,7 @@ const newPostButton = async (event) => {
 
 const deletePostButton = async (event) => {
   event.preventDefault();
-  const post_id = event.target.id
+  const post_id = event.target.id;
 
   const response = await fetch(`/api/posts/${post_id}`, {
     method: 'DELETE',
@@ -20,7 +20,10 @@ const deletePostButton = async (event) => {
 const editPostButton = async (event) => {
   event.preventDefault();
 
-  console.log(event.target.id);
+  const post_id = event.target.id;
+  console.log(event.target);
+  
+  document.location.assign(`editpost/${post_id}`)
 }
 
 document
